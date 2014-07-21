@@ -1,16 +1,16 @@
-C++Primer µÚËÄ°æÏ°Ìâ
+C++Primer ç¬¬å››ç‰ˆä¹ é¢˜
 Exercises Secetion 4.3
-½âÊÍÏÂÁĞ5¸ö¶¨ÒåµÄº¬Òå£¬Ö¸³öÄÄĞ©¶¨Òå·Ç·¨
+è§£é‡Šä¸‹åˆ—5ä¸ªå®šä¹‰çš„å«ä¹‰ï¼ŒæŒ‡å‡ºå“ªäº›å®šä¹‰éæ³•
 4.19:
-    (a) int i;  //intÀàĞÍµÄÆÕÍ¨±äÁ¿
-	(b) const int ic; //intÀàĞÍ³£Á¿£¬³£Á¿±ØĞë³õÊ¼»¯
-	(c) const int *pic; //Ö¸Ïò³£Á¿µÄÖ¸Õë
-	(d) int *const cpi; //intÀàĞÍµÄconstÖ¸Õë £¬±ØĞë³õÊ¼»¯
-	(e) const int *const cpic; //Ö¸ÏòintÀàĞÍµÄconstÖ¸Õë£¬±ØĞë³õÊ¼»¯
-ÏÂÁĞÄÄĞ©³õÊ¼»¯ÊÇºÏ·¨µÄ£¿ÎªÊ²Ã´£¿
+    (a) int i;  //intç±»å‹çš„æ™®é€šå˜é‡
+	(b) const int ic; //intç±»å‹å¸¸é‡ï¼Œå¸¸é‡å¿…é¡»åˆå§‹åŒ–
+	(c) const int *pic; //æŒ‡å‘å¸¸é‡çš„æŒ‡é’ˆ
+	(d) int *const cpi; //intç±»å‹çš„constæŒ‡é’ˆ ï¼Œå¿…é¡»åˆå§‹åŒ–
+	(e) const int *const cpic; //æŒ‡å‘intç±»å‹çš„constæŒ‡é’ˆï¼Œå¿…é¡»åˆå§‹åŒ–
+ä¸‹åˆ—å“ªäº›åˆå§‹åŒ–æ˜¯åˆæ³•çš„ï¼Ÿä¸ºä»€ä¹ˆï¼Ÿ
 4.20:
 	(a)	int i = -1; //yes
 	(b)	const int ic = 5; //yes
 	(c)	const int *pic = &ic; //yes
-	(d)	int *const cpi = &i; //no:²»ÄÜ°Ñ³£Á¿µØÖ·¸³¸ø³£Ö¸Õë
+	(d)	int *const cpi = &i; //no:ä¸èƒ½æŠŠå¸¸é‡åœ°å€èµ‹ç»™å¸¸æŒ‡é’ˆ
 	(e)	const int *const cpic = &ic; //yes

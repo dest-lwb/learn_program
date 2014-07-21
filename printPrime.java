@@ -7,18 +7,18 @@ public class javatest{
 		boolean isPrime;
 
 		while(n < m ){
-			isPrime = true;//ÊÇ·ñÊÇÖÊÊıµÄ±êÖ¾
-			int s = (int)Math.sqrt(n);//¶Ôn¿ª¸ùºÅ
-			for( int i=s; i>1; i-- ){//n³ıÒÔÃ¿¸ö±Èn¿ª¸ùºÅĞ¡±È1´óµÄ×ÔÈ»Êı
-				if( n % i == 0 ){//Èç¹ûÓĞÄÜ±»Õû³ıµÄ£¬Ôò²»ÊÇÖÊÊı
+			isPrime = true;//æ˜¯å¦æ˜¯è´¨æ•°çš„æ ‡å¿—
+			int s = (int)Math.sqrt(n);//å¯¹nå¼€æ ¹å·
+			for( int i=s; i>1; i-- ){//né™¤ä»¥æ¯ä¸ªæ¯”nå¼€æ ¹å·å°æ¯”1å¤§çš„è‡ªç„¶æ•°
+				if( n % i == 0 ){//å¦‚æœæœ‰èƒ½è¢«æ•´é™¤çš„ï¼Œåˆ™ä¸æ˜¯è´¨æ•°
 					isPrime=false;
-					break;//ÍË³öforÑ­»·
+					break;//é€€å‡ºforå¾ªç¯
 				}
 			}
-			if( isPrime ){//Èç¹ûÊÇÖÊÊı£¬Ôò´òÓ¡³öÀ´
+			if( isPrime ){//å¦‚æœæ˜¯è´¨æ•°ï¼Œåˆ™æ‰“å°å‡ºæ¥
 				System.out.print(n+" ");
-				primeNumber++;//¼ÇÂ¼ÖÊÊıµÄ¸öÊı
-				if( primeNumber % 10 == 0)//Êä³ö10¸öÖÊÊıºó»»ĞĞ
+				primeNumber++;//è®°å½•è´¨æ•°çš„ä¸ªæ•°
+				if( primeNumber % 10 == 0)//è¾“å‡º10ä¸ªè´¨æ•°åæ¢è¡Œ
 					System.out.println();
 			}
 			n++;
@@ -26,12 +26,12 @@ public class javatest{
 	}
 }
 
-/*boolean isPrime(int n){//ÅĞ¶ÏnÊÇ·ñÊÇÖÊÊı
+/*boolean isPrime(int n){//åˆ¤æ–­næ˜¯å¦æ˜¯è´¨æ•°
 	
-	int s=(int)Math.sqrt(n);//¶Ôn¿ª¸ùºÅ
+	int s=(int)Math.sqrt(n);//å¯¹nå¼€æ ¹å·
 	
-	for(int i=s;i>1;i--){//n³ıÒÔÃ¿¸ö±Èn¿ª¸ùºÅĞ¡±È1´óµÄ×ÔÈ»Êı
-		if(n%i==0){//Èç¹ûÓĞÄÜ±»Õû³ıµÄ£¬Ôò²»ÊÇÖÊÊı
+	for(int i=s;i>1;i--){//né™¤ä»¥æ¯ä¸ªæ¯”nå¼€æ ¹å·å°æ¯”1å¤§çš„è‡ªç„¶æ•°
+		if(n%i==0){//å¦‚æœæœ‰èƒ½è¢«æ•´é™¤çš„ï¼Œåˆ™ä¸æ˜¯è´¨æ•°
 			return false;
 		}
 	}
