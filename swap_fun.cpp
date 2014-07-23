@@ -77,23 +77,25 @@ void *lsearch( void* key, void* base, int n, int elemSize,
 	return NULL;
 }
 
+//版本3: int 类型
 
+int array[] = {4, 3, 2, 7, 11, 6};
+int size = 6;
+int number = 7;
+int *found(&number, array, 6, sizeof(int), intCmp);
 
+int intCmp(void* elem1, void* elem2)
+{
+	int *ip1 = elem1;
+	int *ip2 = elem2;
+	return *ip1 - *ip2;
+}
 
+//字符串线性查找
+char* notes[] = {"Ab", "F#", "B", "Gb", "D"};
+char* favorateNote = "Eb";
 
+char** found = lsearch(&favorateNote, notes, sizeof(char*), StrCmp()); 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//二分法搜索
+void *bsearch(void* key, void* base, int n, int elemsize, int (*cmp)(void*, void*))
