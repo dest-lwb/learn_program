@@ -171,3 +171,6 @@ void votate(void *front, void *middle, void *end)
 	memmove(front, middle, backSize);
 	memcpy((char*)end - frontSize, buffer, frontSize); // ?frontSize front ?
 }
+
+//quick sort function
+void qsort(void* base, int size, int elemSize, int (*cmpfn)(void*, void*));
