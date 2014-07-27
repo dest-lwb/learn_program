@@ -24,5 +24,20 @@ void *vectorNth(vactor *v, position)
 	#define assert(cond) (void)0
 #else
 
+#endefine
 #define assert(cont) \
 	(cond)?((void)0):fprintf(stderr, " erro massege"), exit(0)
+
+//main.c
+#include<stdio.h> // printf
+#include<stdlib>  // malloc free
+#include<assert.h>
+
+int main(int argc, char* argv[])
+{
+	void *mem = malloc(400);
+	assert( mem != NULL);
+	printf("Yay!\n");
+	free(mem);
+	return 0;
+}
