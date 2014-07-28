@@ -5,7 +5,7 @@ int main()
 {
 	int numAgents = 10;
 	int numTickets = 150;
-	
+	Semaphore lock = SemaphoreNew(-,2);
 	/*
 	for(int agent = 0; agent < numAgents; agent++){
 		SellTickets(agent, numTickets, numAgents);
