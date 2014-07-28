@@ -61,6 +61,20 @@ a = 0101
 
 //最大公约数
 GCD即Greatest Common Divisor
+最大公约数指某几个整数共有因子中最大的一个。
+GCD即Greatest Common Divisor.
+例如，12和30的公约数有：1、2、3、6，其中6就是12和30的最大公约数。
+两个整数的最大公约数主要有两种寻找方法：
+* 两数各分解质因子，然后取出同样有的项乘起来
+* 辗转相除法（扩展版）
+和最小公倍数（lcm）的关系：gcd(a, b)×lcm(a, b) = ab
+两个整数的最大公因子可用于计算两数的最小公倍数，或分数化简成最简分数。
+两个整数的最大公因子和最小公倍数中存在分配律：
+* gcd(a, lcm(b, c)) = lcm(gcd(a, b), gcd(a, c))
+* lcm(a, gcd(b, c)) = gcd(lcm(a, b), lcm(a, c))
+在坐标里，将点(0, 0)和(a, b)连起来，通过整数坐标的点的数目（除了(0, 0)一点之外）就是gcd(a, b)。
+
+//--------------------
 
 #include<stdio.h>
 //non-recursion
@@ -86,3 +100,37 @@ unsigned int gcd(unsigned int a,unsigned int b)
 {
     return (b>0)?gcd(b,a%b):a;
 }
+
+//最小公倍数(lowest common multiple)
+#include<iostream>
+usingnamespace std;
+int GCD(int a, int b);
+int LCM(int a, int b);
+	
+int main()
+{
+	int num1, num2, gcd, lcm;
+	cout<<"求两个数的最大公约数及最小公倍数"<<endl<<endl;
+	cout<<"请输入两个数：";
+	cin>>num1>>num2;
+	gcd = GCD(num1,num2);
+	lcm = LCM(num1,num2);//输出最大公约数和最小公倍数
+	cout<<"最大公约数为："<<gcd<<endl;
+	cout<<"最小公倍数为："<<lcm<<endl;
+	system("pause");
+	return0;
+}
+
+int GCD(intnum1, intnum2){
+	if(num1%num2==0)
+		return num2;
+	else 
+		return GCD(num2,num1%num2);
+}
+
+int LCM(int a, int b){
+	int temp_lcm;
+	temp_lcm = a*b/GCD(a,b);//最小公倍数等于两数之积除以最大公约数
+	return temp_lcm;
+}
+
