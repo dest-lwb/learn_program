@@ -16,14 +16,15 @@ int main()
 	for(int agent=0; agent <= numAgents; agent++){
 		char name[32];
 		sprintf("name, Agent %d Thread", agent);
-		ThreadNew(name, SellTickets, 2, agent, numTickets, numAgents);
+		//ThreadNew(name, SellTickets, 2, agent, numTickets, numAgents);
+		ThreadNew(name, SellTickets, 3, agent, &numTickets, lock);
 	}
 	RunAllThreads();
 	
 	return 0;
 }
 
-void SellTicket(int agentID, int numTicketsToSell)
+void SellTickets(int agentID, int numTicketsToSell)
 {
 	while(numTicketsToSell > 0){
 		printf("Agent %d sells a ticket \n", agentID);
@@ -31,3 +32,15 @@ void SellTicket(int agentID, int numTicketsToSell)
 	printf("Agent %d  All done! \n", agentID);
 }
 
+//
+void SellTickets(int agentID, int *numTicketsp, Semahpore lock)
+{
+	while(true){
+		SemaphoreWait(lock);
+		if(*numTicketsp == 0) block;
+		(*numTicketsp)--;
+		printf("----");
+		SemaphoreSignal(lock);
+	}
+	SemaphoreSignal(lock);
+}
