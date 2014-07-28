@@ -58,3 +58,31 @@ b = 1100
 c = 1001
     ----
 a = 0101
+
+//最大公约数
+GCD即Greatest Common Divisor
+
+#include<stdio.h>
+//non-recursion
+unsigned int gcd(unsigned int a,unsigned int b)
+{
+    int r;
+    while(b>0)
+    {
+         r=a%b;
+         a=b;
+         b=r;
+    }
+    return a;
+}
+//
+unsigned int gcd(unsigned int a,unsigned int b)
+{
+    while(b^=a^=b^=a%=b);
+    return a;
+}
+//递归实现
+unsigned int gcd(unsigned int a,unsigned int b)
+{
+    return (b>0)?gcd(b,a%b):a;
+}
