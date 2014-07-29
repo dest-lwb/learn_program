@@ -44,3 +44,37 @@ void SellTickets(int agentID, int *numTicketsp, Semahpore lock)
 	}
 	SemaphoreSignal(lock);
 }
+
+// Problem Reader and Writer
+char buffer[8];
+Semaphore emptyBuffers(8);
+Semaphore fullBuffers(0);
+
+int main()
+{
+	ITP(false);
+	ThreadNew("Writer", Writer, 0);
+	ThreadNew("Reader", Reader, 0);
+	RunAllThreads();
+	return 0;
+}
+
+void Writer()
+{
+	for(int i=0; i<40; i++){
+		char c = PrepareRandomChar();
+		SemaphoreWait(emptyBuffers);
+		buffer[i%8] = c;
+		SemaphoreSignal(fullBuffers);
+	}
+}
+
+void Reader()
+{
+	for(int i=0; i<40; i++){
+		SemaphoreWait(fullBuffers);
+		char c = buffer[i%8];		
+		SemaphoreSignal(emptyBuffers);
+		ProcessChar(c);
+	}
+}
