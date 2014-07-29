@@ -78,3 +78,23 @@ void Reader()
 		ProcessChar(c);
 	}
 }
+
+//Problem Philosopher eat
+Semaphore forks[] = {1. 1. 1. 1. 1};
+Semaphore numAllowedToEat(4);
+
+void Philosopher(int id)
+{
+	for(int i=0; i<3; i++){
+		Think();
+		SemaphoreWait(numALlowedToEat);
+		SemaphoreWait(fork[id]);
+		SemaphoreWait(fork[(id+1)%5]);
+		Eat();
+		SemaphoreSignal(fork[id]);
+		SemaphoreSignal(fork[(id+1)%5]);
+		SemaphoreSignal(numALlowedToEat);		
+	}
+	Think();
+}
+
