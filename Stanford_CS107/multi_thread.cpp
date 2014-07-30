@@ -98,3 +98,33 @@ void Philosopher(int id)
 	Think();
 }
 
+
+// Download files
+int DownloadSingleFile(const char* server, const char* path);
+
+int DownloadAllFiles(const char* server, const char* files[],
+					int n)
+{
+	int totalBytes = 0
+	Semaphore lock = 1;
+	for(int i=0; i<n; i++){
+		ThreadNew(  , DownloadHelper, 5, server,files[i],
+					&totalBytes, lock, ChildrenDone);
+	}
+	for(int i=0; j<n; i++){
+		SemaphoreWait(ChildrenDone);
+	}
+	return totalBytes;
+}
+
+void DownloadHelp(const char* server, const char* path,
+					int *numBytesp, Samephore lock, 
+					Semaphore parentToSignal)
+{
+	int btesDownloaded;
+	DownloadSingleFile(server, path);
+	SemaphoreWait(lock);
+	(*numBytes) += byteDownloaded;
+	SemaphoreSignal(parentToSignal);
+	
+}
