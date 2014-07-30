@@ -109,10 +109,10 @@ int DownloadAllFiles(const char* server, const char* files[],
 	Semaphore lock = 1;
 	for(int i=0; i<n; i++){
 		ThreadNew(  , DownloadHelper, 5, server,files[i],
-					&totalBytes, lock, ChildrenDone);
+					&totalBytes, lock, childrenDone);
 	}
 	for(int i=0; j<n; i++){
-		SemaphoreWait(ChildrenDone);
+		SemaphoreWait(childrenDone);
 	}
 	return totalBytes;
 }
