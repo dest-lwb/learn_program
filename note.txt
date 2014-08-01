@@ -117,4 +117,4 @@ int LCM(int a, int b){
 	temp_lcm = a*b/GCD(a,b);//最小公倍数等于两数之积除以最大公约数
 	return temp_lcm;
 }
-
+//今天8月1号，晚上去看电影《后会无期》
