@@ -1,0 +1,80 @@
+Quick & dirty parallel programming, with OpenMP!
+Here are three long loops in C, with iterations that don't depend on the order they are run in:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+/* 500 million elements, use fewer if test takes too long */
+#define N 500000000
+
+int main ( int argc, char **argv )
+{
+    double *data = calloc ( N, sizeof(double) );
+    for ( size_t i=0; i<N; i++ )
+        data[i] = (double)(i % 257);
+    for ( size_t i=0; i<N; i++ )
+        data[i] = sqrt(data[i]);
+    double average = 0.0;
+    for ( size_t i=0; i<N; i++ )
+        average += data[i];
+    average /= (double)N;
+    printf ( "Mean value %.6e\n", average );
+    free ( data );
+}
+
+They take a moment to run:
+
+
+% make CFLAGS=-std=c99 LDLIBS=-lm numbers
+gcc -std=c99    numbers.c  -lm -o numbers
+% time ./numbers
+Mean value 1.065549e+01
+
+real    0m6.247s
+user    0m5.996s
+sys     0m0.227s
+
+Annotate the loops to assure the compiler that iterations are independent:
+
+
+/* Headers and things are the same as above */
+int main ( int argc, char **argv )
+{
+    double *data = calloc ( N, sizeof(double) );
+    /* This can be parallel... */
+    #pragma omp parallel for
+    for ( size_t i=0; i<N; i++ )
+        data[i] = (double)(i % 257);
+
+    /* ...this can be parallel too... */
+    #pragma omp parallel for
+    for ( size_t i=0; i<N; i++ )
+        data[i] = sqrt(data[i]);
+
+    double average = 0.0;
+    /* ...and this, but here, we must also say that 
+     *    all iterations add to the same variable,
+     *    or things could get ugly.
+     */
+    #pragma omp parallel for reduction(+:average)
+    for ( size_t i=0; i<N; i++ )
+        average += data[i];
+    average /= (double)N;
+    printf ( "Mean value %.6e\n", average );
+    free ( data );
+}
+
+Compile, and run again:
+
+% make CFLAGS="-std=c99 -fopenmp" LDLIBS=-lm numbers_parallel
+gcc -std=c99 -fopenmp numbers_parallel.c  -lm -o numbers_parallel
+% time ./numbers_parallel
+Mean value 1.065549e+01
+
+real    0m2.517s
+user    0m6.464s
+sys     0m0.234s
+
+Abracadabra, 2.5 times faster (at least on my quad-core) without writing anything complicated. You could say it should've been almost 4 times faster, but sharing the average variable in the last step slows things down a bit, and there are initialization and data movement costs that parallelizing the loops doesn't help with.
+
+Parallelizing programs gets (much) harder when there are dependencies, but if the slowest part of your program is a loop with independent iterations, putting more CPU cores to work is dead simple. It's hard to guarantee that C, C++ or multi-core CPUs will be there for the rest of your life, but they should stick around for a while, and it doesn't take 10 minutes to pick this up anyway.
