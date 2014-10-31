@@ -1,4 +1,7 @@
 //:SIZE.CPP -- Object sizes vs. virtual funs
+#include<iostream>
+using namespace std;
+
 class no_virtual{
 	int a;
 public:
@@ -23,10 +26,10 @@ public:
 };
 
 int main(){
-	cout<<"int: "<<sizeof(int)<<endl;
-	cout<<"no_virtual: "<<sizeof(no_virtual)<<endl;
-	cout<<"void*: "sizeof(void*)<<endl;
-	cout<<"one_virtual: "<<sizeof(one_virtual)<<endl;
-	cout<<"two_virtual: "<<sizeof(two_virtual)<<endl;
+	cout<<"int: "<<sizeof(int)<<endl;                    // out:int: 4
+	cout<<"no_virtual: "<<sizeof(no_virtual)<<endl;      // out:no_virtual:4
+	cout<<"void*: "<<sizeof(void*)<<endl;                // out:void*: 8
+	cout<<"one_virtual: "<<sizeof(one_virtual)<<endl;    // out:one_virtual: 16
+	cout<<"two_virtuals: "<<sizeof(two_virtuals)<<endl;  // out:two_virtuals: 16
 
 }
